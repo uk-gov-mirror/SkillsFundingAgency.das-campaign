@@ -17006,12 +17006,13 @@
   background: #fff;
   color: #0b0c0c;
   margin: 0 0 20px;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   border-left: 10px solid #cbd0d3;
 }
 .fiu-quote--has-image {
   display: flex;
   gap: 1rem;
+  align-items: flex-start;
 }
 
 .fiu-quote__blockquote, .fiu-article > blockquote:not([class]) {
@@ -17049,6 +17050,10 @@
 .fiu-template--employers .fiu-article > blockquote:not([class]),
 .fiu-quote--employer {
   border-left-color: #4d43a3;
+  background-color: #f3f3f3;
+  border-top: 1px solid #DBD5E9;
+  border-right: 1px solid #DBD5E9;
+  border-bottom: 1px solid #DBD5E9;
 }
 
 .govuk-details__summary,
@@ -19221,6 +19226,14 @@ a.fiu-panel:active .fiu-panel__tag, a.fiu-support-panel:active .fiu-panel__tag, 
   margin-bottom: 0;
 }
 
+/* Panels used on the calculate benefits form */
+.fiu-panel-form {
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #cecece;
+  background: #fff;
+}
+
 .fiu-phase-banner {
   font-family: nobel, sans-serif;
   font-weight: 300;
@@ -19988,40 +20001,14 @@ a.fiu-panel:active .fiu-panel__tag, a.fiu-support-panel:active .fiu-panel__tag, 
   padding: 0;
   margin: 20px 0;
 }
-@media (min-width: 40.0625em) {
-  .fiu-stats-list::after {
-    content: "";
-    display: block;
-    clear: both;
-  }
-  .fiu-stats-list {
-    margin-right: -15px;
-    margin-left: -15px;
-    margin-top: 30px;
-  }
-}
-@media print {
-  .fiu-stats-list {
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-}
 
 .fiu-stats-list__list-item {
   margin-bottom: 15px;
 }
 @media (min-width: 40.0625em) {
   .fiu-stats-list__list-item {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0 15px;
     font-size: 18px;
-  }
-}
-@media (min-width: 40.0625em) and (min-width: 40.0625em) {
-  .fiu-stats-list__list-item {
-    width: 33.3333333333%;
-    float: left;
+    width: 50%;
   }
 }
 @media print {
@@ -20059,49 +20046,31 @@ a.fiu-panel:active .fiu-panel__tag, a.fiu-support-panel:active .fiu-panel__tag, 
 }
 
 .fiu-stats-list--panels {
-  margin-top: 20px;
+  margin-top: 1rem;
 }
 @media (min-width: 40.0625em) {
   .fiu-stats-list--panels {
     display: flex;
-  }
-}
-@media (min-width: 40.0625em) {
-  .fiu-stats-list--panels .fiu-stats-list__list-item {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0 15px;
-  }
-}
-@media (min-width: 40.0625em) and (min-width: 40.0625em) {
-  .fiu-stats-list--panels .fiu-stats-list__list-item {
-    width: 50%;
-    float: left;
-  }
-}
-@media print {
-  .fiu-stats-list--panels .fiu-stats-list__list-item {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0 15px;
-  }
-}
-@media print and (min-width: 40.0625em) {
-  .fiu-stats-list--panels .fiu-stats-list__list-item {
-    width: 50%;
-    float: left;
+    gap: 1rem;
   }
 }
 .fiu-stats-list--panels .fiu-stats-list__stat {
   text-align: left;
   margin: 0;
   color: #4d43a3;
+  margin-bottom: 5px;
+  display: block;
+  font-size: 2rem;
+}
+@media (min-width: 40.0625em) {
+  .fiu-stats-list--panels .fiu-stats-list__stat {
+    font-size: 3rem;
+  }
 }
 @media print {
   .fiu-stats-list--panels .fiu-stats-list__stat {
     display: block;
     color: black;
-    margin-bottom: 5px;
   }
 }
 @media print {
@@ -20113,7 +20082,12 @@ a.fiu-panel:active .fiu-panel__tag, a.fiu-support-panel:active .fiu-panel__tag, 
 .fiu-stats-list__panel {
   display: block;
   background: #f3f3f3;
-  padding: 10px;
+  border-left: 10px solid #4d43a3;
+  border-top: 1px solid #DBD5E9;
+  border-right: 1px solid #DBD5E9;
+  border-bottom: 1px solid #DBD5E9;
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
   height: 100%;
 }
 @media print {

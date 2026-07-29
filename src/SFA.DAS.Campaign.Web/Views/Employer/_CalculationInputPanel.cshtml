@@ -5,8 +5,9 @@
     Func<string, bool> isInvalid = field => ViewData.ModelState[field]?.ValidationState == ModelValidationState.Invalid;
 }
 
-<div>
-    <h2 class="govuk-heading-l">Estimate what funding could be available towards your apprentices training costs</h2>
+<div class="fiu-article fiu-panel-form">
+    <h2 class="govuk-heading-l">Estimate the funding you can get</h2>
+    <p>This tool can help you estimate what funding could be available towards your apprentice’s training costs, if they’re aged 25 or over. If you’re recruiting an apprentice aged under 25, the government will usually fund 100% of the training costs. </p>
     <form method="post" asp-action="ApprenticeshipBenefitsAndFunding" asp-controller="Employer" asp-fragment="funding">
         <div class="govuk-form-group" highlight-error-for="PayBillGreaterThanThreeMillion">
             <fieldset class="govuk-fieldset" aria-describedby="@(isInvalid("PayBillGreaterThanThreeMillion") ? "PayBillGreaterThanThreeMillion-error" : null)">
@@ -30,14 +31,10 @@
         </div>
         <div class="govuk-form-group" highlight-error-for="StandardUid">
             <label class="govuk-label govuk-label--m govuk-!-font-weight-bold" for="StandardUid">
-                What training course do you want your apprentice to take?
+                What course do you want your apprentice to take?
             </label>
             <span id="StandardUid-error" asp-validation-for="@Model.StandardUid" class="govuk-error-message"></span>
-            <div class="govuk-hint" id="offerHint">
-                We offer over @Model.Standards.Count() courses which you can search by keyword or job role,
-                <a href="https://www.instituteforapprenticeships.org/apprenticeship-standards/" class="govuk-link govuk-link--no-visited-state" target="_blank">or you can explore the latest list with Institute for Apprenticeships and Technical Education</a>.
-            </div>
-            <select class="govuk-select" aria-describedby="@(isInvalid("StandardUid") ? "offerHint StandardUid-error" : "offerHint")" asp-for="@Model.StandardUid" asp-items="@Model.StandardItems" data-fiu-autocomplete="true" id="StandardUid"><option label=" "></option></select>
+            <select class="govuk-select" aria-describedby="@(isInvalid("StandardUid") ? "StandardUid-error" : "")" asp-for="@Model.StandardUid" asp-items="@Model.StandardItems" data-fiu-autocomplete="true" id="StandardUid"><option label=" "></option></select>
         </div>
         <div class="govuk-form-group" highlight-error-for="NumberOfRoles">
             <label class="govuk-label govuk-label--m govuk-!-font-weight-bold" for="NumberOfRoles">
