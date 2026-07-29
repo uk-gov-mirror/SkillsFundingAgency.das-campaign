@@ -1,7 +1,6 @@
 @using System.Linq
 @{
     Layout = "Redesign_Layout";
-    ViewBag.Section = "apprentices";
 }
 
 @{
@@ -26,7 +25,7 @@
     <div class="fiu-page-header">
         <div class="fiu-width-container">
             <div class="fiu-page-header__image-wrap">
-                <partial name="_Navigation" model="@("apprentices")" />
+                <partial name="_Navigation" />
                 <div class="fiu-page-header__image" style="@headingImageStyle">
                     <span class="fiu-page-header__image-mask"></span>
                 </div>
@@ -36,7 +35,6 @@
                         {
                             <a href="@ViewBag.ParentPageUrl" class="govuk-back-link govuk-back-link--inverse fiu-back-link fiu-page-header__back">Back</a>
                         }
-                        <strong class="fiu-tag fiu-tag--apprentices fiu-page-header__tag fiu-feature-text">Apprentices</strong>
                         <h1 class="govuk-heading-xl fiu-page-heading__title">@ViewBag.PageTitle</h1>
                         @if (ViewBag.PageSummary != null)
                         {

@@ -135,12 +135,10 @@
                                asp-action="Cookies">Cookies</a>
                         </li>
                         <li role="listitem" class="fiu-footer__list-item">
-                            <a class="fiu-footer__link" id="link-footer-privacy-notice" asp-controller="Home"
-                               asp-action="Privacy">Privacy</a>
+                            <a class="fiu-footer__link" id="link-footer-privacy-notice"  href="/policies/privacy">Privacy</a>
                         </li>
                         <li role="listitem" class="fiu-footer__list-item">
-                            <a class="fiu-footer__link" id="link-footer-accessibility" asp-controller="Home"
-                               asp-action="Accessibility">Accessibility</a>
+                            <a class="fiu-footer__link" id="link-footer-accessibility" href="/policies/accessibility">Accessibility</a>
                         </li>
                         <li role="listitem" class="fiu-footer__list-item">
                             Built by the <a class="fiu-footer__link" id="link-footer-built-by"
@@ -182,7 +180,7 @@
 
     <script src="/js/dataLayerPushes.js" asp-append-version="true"></script>
     <script src="/js/cookies.js" asp-append-version="true"></script>
-
+    <script src="https://das-prd-frnt-end.azureedge.net/libs/accessible-autocomplete/accessible-autocomplete.min.js"></script>
     <script type="module" src="/js/govuk-frontend.min.js"></script>
     <script type="module">
         import { initAll } from '/js/govuk-frontend.min.js'
