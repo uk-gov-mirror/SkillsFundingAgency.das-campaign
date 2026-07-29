@@ -16938,6 +16938,10 @@
 .fiu-article li > p > a {
   font-weight: inherit;
 }
+.fiu-article > h2 > a {
+  margin: 0;
+}
+
 .fiu-section-break, .fiu-article > hr:not([class]) {
   margin: 0;
   border: 0;
@@ -17258,7 +17262,7 @@ b {
 }
 
 .app-anchor-links__panel {
-  margin-bottom: 2rem;
+  margin-bottom: 3.125rem;
 }
 
 .app-anchor-links__list {
@@ -17291,8 +17295,23 @@ b {
   width: 16px;
 }
 
-.fiu-article {
+main .fiu-article {
   margin-bottom: 2rem;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.625rem;
+  border: 1px solid #cecece;
+}
+main .fiu-article p:empty {
+  display: none;
+}
+@media (min-width: 40.0625em) {
+  main .fiu-article {
+    padding: 2rem;
+  }
+}
+main .fiu-article:empty {
+  display: none;
 }
 
 .fiu-attachment {
