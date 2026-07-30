@@ -5,11 +5,12 @@
   background: #fff;
   color: $fiu-text-colour;
   margin: 0 0 20px;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   border-left: 10px solid $fiu-border-colour;
   &--has-image {
     display: flex;
     gap: 1rem;
+    align-items: flex-start;
   }
 }
 
@@ -42,4 +43,8 @@
 .fiu-template--employers .fiu-article > blockquote:not([class]),
 .fiu-quote--employer {
   border-left-color: $fiu-employers-brand-colour;
+  background-color: #f3f3f3;
+  border-top: 1px solid #DBD5E9;
+  border-right: 1px solid #DBD5E9;
+  border-bottom: 1px solid #DBD5E9;
 }

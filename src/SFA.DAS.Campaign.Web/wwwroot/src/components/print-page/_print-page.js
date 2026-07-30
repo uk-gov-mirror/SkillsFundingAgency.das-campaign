@@ -7,7 +7,7 @@ export class PrintLink {
   init() {
     const printLink = document.createElement('a');
     printLink.href = '#';
-    printLink.className = 'govuk-body govuk-link fiu-print-page-link';
+    printLink.className = 'govuk-body govuk-link fiu-print-page-link fiu-link--employer';
     printLink.textContent = this.container.dataset.linkContent || 'Print page';
 
     printLink.addEventListener('click', event => {

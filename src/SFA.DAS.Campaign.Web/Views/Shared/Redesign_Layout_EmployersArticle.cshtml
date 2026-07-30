@@ -1,22 +1,9 @@
 @{
     Layout = "Redesign_Layout_EmployersHub";
-    ViewBag.PanelsInNarrowColumn = true;
+    ViewBag.PageSummary = Model.Content.Summary;
 }
 
 <div class="fiu-width-container">
-    <div class="govuk-grid-row">
-        @if (ViewBag.HasNotGotTabs == false)
-        {
-            <div class="govuk-grid-column-full">
-                @RenderBody()
-            </div>
-        }
-        else
-        {
-            <div class="govuk-grid-column-two-thirds">
-                @RenderBody()
-            </div>
-        }
-    </div>
+    @RenderBody()
     <hr class="govuk-section-break govuk-section-break--xl" />
 </div>
