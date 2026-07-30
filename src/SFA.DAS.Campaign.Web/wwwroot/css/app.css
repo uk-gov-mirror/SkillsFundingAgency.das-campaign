@@ -17172,6 +17172,14 @@ b {
   }
 }
 
+.fiu-article > h2:not([class]) {
+  margin-bottom: 10px;
+}
+
+.fiu-article > h3:not([class]) {
+  margin-bottom: 10px;
+}
+
 .fiu-article > p:not([class]) {
   color: inherit;
 }
