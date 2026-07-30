@@ -5,6 +5,7 @@ namespace SFA.DAS.Campaign.Domain.Content
         Home,
         Employers,
         Apprentices,
-        Influencers
+        Influencers,
+        Policies
     }
 }

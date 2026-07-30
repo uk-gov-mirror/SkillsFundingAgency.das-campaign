@@ -1,7 +1,7 @@
 @use '../../shared' as *;
 
 .app-anchor-links__panel {
-  margin-bottom: 2rem;
+  margin-bottom: 3.125rem;
 }
 
 .app-anchor-links__list {
@@ -29,9 +29,9 @@
 
   .app-anchor-links__list-item::before {
     content: "—";
-    margin-left: -20px;
+    margin-left: -1rem;
     color: #484949;
     display: inline-block;
-    width: 16px;
+    width: 1rem;
   }
 }

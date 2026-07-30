@@ -4,7 +4,7 @@
     
     var headingImageStyle = ViewBag.HeadingImage != null
         ? $"background-image: url('{ViewBag.HeadingImage}')"
-        : null;
+        : "display: none";
     var headingColWidth = ViewBag.HeadingImage != null
         ? "one-half"
         : "full";
