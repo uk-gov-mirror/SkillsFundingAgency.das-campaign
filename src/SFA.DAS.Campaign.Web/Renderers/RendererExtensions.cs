@@ -13,6 +13,8 @@ namespace SFA.DAS.Campaign.Web.Renderers
 {
     public static class RendererExtensions
     {
+        private const string InternalHost = "www.apprenticeships.gov.uk";
+
         public static string CheckForAndConstructHyperlinks(this string controlValue)
         {
             var linkTextRegEx = new Regex(@"\[(.*?)\]", RegexOptions.Compiled);
@@ -37,7 +39,8 @@ namespace SFA.DAS.Campaign.Web.Renderers
             sb.Append(stringOutputs.Prepend);
             sb.Append($"<a href=\"{url.Groups[1].Value}\"");
 
-            if (url.Groups[1].Value.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+            if (url.Groups[1].Value.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                && url.Groups[1].Value.IndexOf(InternalHost, StringComparison.OrdinalIgnoreCase) < 0)
             {
                 sb.Append(" title=\"\" rel=\"external\" target=\"_blank\"");
             }

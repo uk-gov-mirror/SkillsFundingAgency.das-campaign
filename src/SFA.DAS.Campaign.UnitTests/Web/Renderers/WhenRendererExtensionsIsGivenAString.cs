@@ -36,6 +36,18 @@ namespace SFA.DAS.Campaign.UnitTests.Web.Renderers
             actual.Should().Be("<a href=\"https://www.apprenticeships.scot/\" title=\"\" rel=\"external\" target=\"_blank\">Scotland</a>");
         }
 
+        [TestCase("https://www.apprenticeships.gov.uk/employer/find-apprenticeship-training")]
+        [TestCase("http://www.apprenticeships.gov.uk/")]
+        [TestCase("https://WWW.APPRENTICESHIPS.GOV.UK/apprentices")]
+        public void Then_If_It_Contains_Markup_For_An_Apprenticeships_Gov_Uk_Uri_Then_No_Target_Is_Set(string url)
+        {
+            var value = $"[find apprenticeship training]({url})";
+
+            var actual = value.CheckForAndConstructHyperlinks();
+
+            actual.Should().Be($"<a href=\"{url}\">find apprenticeship training</a>");
+        }
+
         [Test]
         public void Then_If_It_Contains_Markup_For_Bold_Then_The_String_Is_Correctly_Returned()
         {
