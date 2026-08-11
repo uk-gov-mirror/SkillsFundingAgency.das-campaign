@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SFA.DAS.Campaign.Application.Content.Queries;
+using SFA.DAS.Campaign.Application.Services;
 using SFA.DAS.Campaign.Domain.Content;
 using SFA.DAS.Campaign.Web.Helpers;
 
@@ -19,11 +20,12 @@ namespace SFA.DAS.Campaign.Web.Controllers.Redesign
     public class ArticleController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IRedirectService _redirectService;
 
-        public ArticleController(IMediator mediator)
+        public ArticleController(IMediator mediator, IRedirectService redirectService)
         {
             _mediator = mediator;
-
+            _redirectService = redirectService;
         }
 
         [HttpGet("/apprentices/employer-profiles")]
@@ -70,7 +72,16 @@ namespace SFA.DAS.Campaign.Web.Controllers.Redesign
 
             if (landingPage == null)
             {
+                var redirect = await this.GetCmsRedirect(_redirectService, Request.Path, Request.QueryString);
+
+                if (redirect != null)
+                {
+                    return redirect;
+                }
+
                 var sitemap = await _mediator.Send(new GetSiteMapQuery(), cancellationToken);
+
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
 
                 return View("~/Views/Error/PageNotFound.cshtml", sitemap.Page);
             }

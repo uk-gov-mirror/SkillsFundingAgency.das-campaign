@@ -4,11 +4,15 @@ using System.Net;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Logging;
 using SFA.DAS.Campaign.Application.Content.Queries;
+using SFA.DAS.Campaign.Application.Services;
 using SFA.DAS.Campaign.Domain.Content;
+using SFA.DAS.Campaign.Web.Helpers;
 
 namespace SFA.DAS.Campaign.Web.Controllers
 {
@@ -16,11 +20,13 @@ namespace SFA.DAS.Campaign.Web.Controllers
     {
         private readonly ILogger<ErrorController> _logger;
         private readonly IMediator _mediator;
+        private readonly IRedirectService _redirectService;
 
-        public ErrorController(ILogger<ErrorController> logger, IMediator mediator)
+        public ErrorController(ILogger<ErrorController> logger, IMediator mediator, IRedirectService redirectService)
         {
             _logger = logger;
             _mediator = mediator;
+            _redirectService = redirectService;
         }
 
         [Route("error/{id?}")]
@@ -32,7 +38,13 @@ namespace SFA.DAS.Campaign.Web.Controllers
 
             if (Response.StatusCode == 404)
             {
-                return RedirectToAction("PageNotFound");
+                // The requested path isn't on this request - status code pages re-execute against /error/404 - so the
+                // path the visitor actually asked for comes from the re-execute feature.
+                var reExecute = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
+
+                var redirect = await this.GetCmsRedirect(_redirectService, reExecute?.OriginalPath, new QueryString(reExecute?.OriginalQueryString));
+
+                return redirect ?? RedirectToAction("PageNotFound");
             }
 
             ViewBag.Title = $"Error {Response.StatusCode}";

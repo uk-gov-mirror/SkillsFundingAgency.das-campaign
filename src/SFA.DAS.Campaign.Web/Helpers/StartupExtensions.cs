@@ -77,6 +77,9 @@ namespace SFA.DAS.Campaign.Web.Helpers
                                                     ));
 
             services.AddTransient<IExternalApiService, ExternalApiService>();
+
+            services.AddMemoryCache();
+            services.AddTransient<IRedirectService, RedirectService>();
         }
 
         public static void ConfigureSfaRepositories(this IServiceCollection services)
