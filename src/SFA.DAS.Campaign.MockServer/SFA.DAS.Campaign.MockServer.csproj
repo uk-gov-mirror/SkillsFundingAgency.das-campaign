@@ -47,6 +47,9 @@
     <None Update="json\menu-data-response.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="json\redirects-data-response.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="json\sectors-data-response.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

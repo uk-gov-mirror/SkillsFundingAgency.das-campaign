@@ -55,7 +55,7 @@ namespace SFA.DAS.Campaign.UnitTests.Web.Renderers
             var actual = renderer.Render(list);
 
             actual.Value.Should().NotBeNullOrWhiteSpace();
-            actual.Value.Should().Be("<ul role=\"list\"><li role=\"listitem\">item 1 <a href=\"https://www.apprenticeships.gov.uk/employer/find-apprenticeship-training\" title=\"\" rel=\"external\" target=\"_blank\">find apprenticeship training</a></li></ul>");
+            actual.Value.Should().Be("<ul role=\"list\"><li role=\"listitem\">item 1 <a href=\"https://www.apprenticeships.gov.uk/employer/find-apprenticeship-training\">find apprenticeship training</a></li></ul>");
         }
     }
 }

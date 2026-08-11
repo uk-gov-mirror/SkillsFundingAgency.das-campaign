@@ -1,0 +1,22 @@
+{
+  "redirects": [
+    {
+      "fromPath": "/employers/a-retired-page",
+      "toPath": "/employers/hiring-an-apprentice",
+      "matchType": "Exact",
+      "permanent": true
+    },
+    {
+      "fromPath": "/employers/a-temporary-move",
+      "toPath": "/employers/funding-an-apprenticeship",
+      "matchType": "Exact",
+      "permanent": false
+    },
+    {
+      "fromPath": "/employers/a-retired-section",
+      "toPath": "/employers",
+      "matchType": "Prefix",
+      "permanent": true
+    }
+  ]
+}
