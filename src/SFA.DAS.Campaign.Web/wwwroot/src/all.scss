@@ -1,5 +1,25 @@
-@use 'shared';
+@use 'shared' as s;
 @use 'core';
 @use 'utilities';
 @use 'components';
 @use 'pages';
+
+
+:root {
+  --border-colour: #cecece;
+  --link-colour: #{s.$fiu-apprentices-link-colour};
+  --link-hover-colour: #{s.$fiu-apprentices-link-hover-colour};
+}
+
+.fiu-template--apprentices {
+  --border-colour: #{s.$green-light};
+  --link-colour: #{s.$fiu-apprentices-link-colour};
+  --link-hover-colour: #{s.$fiu-apprentices-link-hover-colour};
+}
+
+.fiu-template--employers {
+  --border-colour: #{s.$purple-light};
+  --link-colour: #{s.$fiu-employers-link-colour};
+  --link-hover-colour: #{s.$fiu-employers-link-hover-colour};
+}
+

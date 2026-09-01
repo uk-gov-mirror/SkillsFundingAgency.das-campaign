@@ -1,3 +1,4 @@
+﻿using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -29,6 +30,8 @@ namespace SFA.DAS.Campaign.Web.Controllers.Redesign
             if (page == null)
             {
                 var sitemap = await _mediator.Send(new GetSiteMapQuery(), cancellationToken);
+
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
 
                 return View("~/Views/Error/PageNotFound.cshtml", sitemap.Page);
             }

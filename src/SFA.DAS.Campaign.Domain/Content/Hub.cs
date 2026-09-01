@@ -12,6 +12,7 @@ namespace SFA.DAS.Campaign.Domain.Content
             Cards = new List<Card>();
             Cards2 = new List<Card>();
             Cards3 = new List<Card>();
+            Sections = new List<HubSection>();
         }
         public string Summary { get; set; }
         public Image HeaderImage { get; set; }
@@ -21,5 +22,6 @@ namespace SFA.DAS.Campaign.Domain.Content
         public List<Card> Cards2 { get; set; }
         public string CardsTitle3 { get; set; }
         public List<Card> Cards3 { get; set; }
+        public List<HubSection> Sections { get; set; }
     }
 }

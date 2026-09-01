@@ -1,0 +1,84 @@
+@using SFA.DAS.Campaign.Web.Helpers
+@model SFA.DAS.Campaign.Domain.Content.HubSection
+@{
+    if (Model == null || !Model.HasContent)
+    {
+        return;
+    }
+    
+    var brand = ViewData["HubBrand"] as string ?? "apprentices";
+    var sectionModifier = string.IsNullOrWhiteSpace(Model.SectionType)
+        ? string.Empty
+        : $" fiu-hub-section--{Model.SectionType.Trim().ToLowerInvariant()}";
+}
+<section class="fiu-hub-section@(sectionModifier)">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+            @if (!string.IsNullOrWhiteSpace(Model.Heading))
+            {
+                <h2 class="govuk-heading-l fiu-hub-section__title">@Model.Heading</h2>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Introduction))
+            {
+                <p class="fiu-hub-section__introduction">@Model.Introduction</p>
+            }
+         
+            @if (Model.Image?.Url != null)
+            {
+                <img src="@Model.Image.Url"
+                     alt="@(Model.Image.Description ?? string.Empty)"
+                     class="fiu-hub-section__image"/>
+            }
+
+        </div>
+        <div class="govuk-grid-column-two-thirds">
+            
+            @if (Model.StepperLinks.Any())
+            {
+                <ol class="fiu-stepper">
+                    @foreach (var link in Model.StepperLinks)
+                    {
+                        <li class="fiu-stepper__item">
+                            <span class="fiu-stepper__number" aria-hidden="true"></span>
+                            <a class="fiu-stepper__link" href="@link.Url.ToLower()">
+                                <div class="fiu-stepper__body">
+                                    <h3 class="fiu-stepper__heading">
+                                        @link.Title
+                                    </h3>
+                                    @if (!string.IsNullOrWhiteSpace(link.Summary))
+                                    {
+                                        <p class="fiu-stepper__content">@link.Summary</p>
+                                    }
+                                </div>
+                            </a>
+                        </li>
+                    }
+                </ol>
+            }
+
+            @if (Model.StandardLinks.Any())
+            {
+                <ul class="fiu-stepper">
+                    @foreach (var link in Model.StandardLinks)
+                    {
+                        <li class="fiu-stepper__item fiu-stepper__item--no-number">
+                            <span class="fiu-stepper__space" aria-hidden="true"></span>
+                            <a class="fiu-link fiu-stepper__link" href="@link.Url.ToLower()">
+                                <div class="fiu-stepper__body">
+                                    <h3 class="fiu-stepper__heading">
+                                        @link.Title
+                                    </h3>
+                                    @if (!string.IsNullOrWhiteSpace(link.Summary))
+                                    {
+                                        <p class="fiu-stepper__content">@link.Summary</p>
+                                    }
+                                </div>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            }
+            <partial name="Hubs/_HubCtaPanel" model="Model.CtaPanel" />
+        </div>
+    </div>
+</section>

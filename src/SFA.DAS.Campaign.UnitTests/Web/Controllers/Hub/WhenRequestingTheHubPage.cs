@@ -1,7 +1,10 @@
-﻿using System.Threading;
+﻿using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture.NUnit3;
+using FluentAssertions;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
@@ -41,6 +44,7 @@ namespace SFA.DAS.Campaign.UnitTests.Web.Controllers.Hub
 
             controllerResult.AssertThatTheObjectResultIsValid();
             controllerResult.AssertThatTheReturnedViewIsCorrect("~/Views/Error/PageNotFound.cshtml");
+            controller.Response.StatusCode.Should().Be((int)HttpStatusCode.NotFound);
             mockMediator.Verify(o => o.Send(It.IsAny<GetSiteMapQuery>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
@@ -69,6 +73,12 @@ namespace SFA.DAS.Campaign.UnitTests.Web.Controllers.Hub
 
         private static async Task<T> InstantiateController<T>(HubController controller, bool preview = false)
         {
+            // The not-found path sets Response.StatusCode, so the controller needs a real HttpContext.
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext { Request = { Path = $"/{HubName}" } }
+            };
+
             var controllerResult = (T)await controller.GetHubAsync(HubName, preview, CancellationToken.None);
             return controllerResult;
         }

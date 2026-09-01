@@ -1,0 +1,179 @@
+@use '../../shared' as *;
+
+.fiu-hub-section {
+  background: #fff;
+  padding: $fiu-padding;
+  margin-bottom: 3rem;
+  border: 1px solid var(--border-colour);
+  border-radius: $fiu-border-radius-lg;
+  @include govuk-media-query($from: tablet) {
+    margin-bottom: 3.75rem;
+    padding: $fiu-padding-lg;
+  }
+}
+
+.fiu-hub-section__intro {
+  align-items: center;
+}
+
+.fiu-hub-section__title {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.fiu-hub-section__introduction {
+  @extend .govuk-body;
+  @include fiu-typography-common;
+  margin-bottom: 0;
+
+  @include govuk-media-query($from: tablet) {
+    font-size: 21px;
+    line-height: 1.35;
+  }
+}
+
+.fiu-hub-section__image {
+  display: block;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  margin: 1.5rem auto;
+  @include govuk-media-query($from: tablet) {
+    margin-top: 0;
+  }
+}
+
+.fiu-stepper {
+  @include fiu-typography-common;
+  counter-reset: fiu-stepper;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.fiu-stepper__item {
+  counter-increment: fiu-stepper;
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  position: relative;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    top: 2.5rem;
+    left: 1.25rem;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-colour);
+  }
+}
+
+.fiu-stepper__number {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--border-colour);
+  font-weight: $fiu-font-weight-bold;
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    content: counter(fiu-stepper);
+  }
+}
+
+.fiu-stepper__space {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+}
+
+.fiu-stepper__body {
+  flex: 1 1 auto;
+  padding-top: 0.25rem;
+}
+
+.fiu-stepper__heading {
+  margin: 0 0 0.4em 0;
+  font-size: 20px;
+  line-height: 1.1em;
+  font-weight: $fiu-font-weight-bold;
+
+  @include govuk-media-query($from: $fiu-large-desktop-breakpoint) {
+    font-size: 24px;
+  }
+}
+
+.fiu-stepper__content {
+  @extend .govuk-body;
+  @include fiu-typography-common;
+  margin-bottom: 0;
+}
+
+.fiu-stepper__link {
+  display: block;
+  text-decoration: none;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-colour);
+  .fiu-stepper__heading {
+    color: var(--link-colour);
+  }
+}
+
+.fiu-panel.fiu-cta-panel {
+  align-items: flex-start;
+  text-align: left;
+
+  @include govuk-media-query($from: tablet) {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+
+.fiu-cta-panel__icon {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: $fiu-apprentices-brand-colour;
+  color: $white;
+}
+
+.fiu-panel--employers .fiu-cta-panel__icon {
+  background: $fiu-employers-brand-colour;
+}
+
+.fiu-cta-panel__body {
+  flex: 1 1 auto;
+
+}
+
+.fiu-cta-panel__action {
+  flex: 0 0 auto;
+
+  .govuk-button {
+    margin-bottom: 0;
+  }
+
+  .govuk-hint {
+    display: block;
+    margin-top: 0.5rem;
+  }
+}
