@@ -18805,14 +18805,17 @@ a.fiu-card-homepage .fiu-card__content {
 }
 
 .fiu-panel.fiu-cta-panel {
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
 }
 @media (min-width: 40.0625em) {
   .fiu-panel.fiu-cta-panel {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
+    text-align: left;
     gap: 1.5rem;
+    padding: 1.75rem;
   }
 }
 
@@ -18845,6 +18848,11 @@ a.fiu-card-homepage .fiu-card__content {
 .fiu-cta-panel__action .govuk-hint {
   display: block;
   margin-top: 0.5rem;
+}
+@media (min-width: 40.0625em) {
+  .fiu-cta-panel__action {
+    align-self: self-end;
+  }
 }
 
 .fiu-nav {
