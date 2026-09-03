@@ -19345,11 +19345,11 @@ a.fiu-panel:hover .fiu-cta-panel__button {
 }
 
 a.fiu-panel h2, a.fiu-support-panel h2, a.fiu-results-panel h2 {
-  color: #287E3A;
+  color: var(--brand-colour);
 }
 a.fiu-panel:active, a.fiu-support-panel:active, a.fiu-results-panel:active, a.fiu-panel:hover, a.fiu-support-panel:hover, a.fiu-results-panel:hover {
-  background: #287E3A;
-  border-color: rgb(27.7108433735, 87.2891566265, 40.1807228916);
+  background: var(--brand-colour);
+  border-color: var(--brand-colour);
   color: #fff;
 }
 a.fiu-panel:active h2, a.fiu-support-panel:active h2, a.fiu-results-panel:active h2, a.fiu-panel:hover h2, a.fiu-support-panel:hover h2, a.fiu-results-panel:hover h2 {
@@ -19359,6 +19359,10 @@ a.fiu-panel:active h2, a.fiu-support-panel:active h2, a.fiu-results-panel:active
 a.fiu-panel:active .fiu-panel__tag, a.fiu-support-panel:active .fiu-panel__tag, a.fiu-results-panel:active .fiu-panel__tag, a.fiu-panel:hover .fiu-panel__tag, a.fiu-support-panel:hover .fiu-panel__tag, a.fiu-results-panel:hover .fiu-panel__tag {
   color: #287E3A;
   background: #fff;
+}
+
+.fiu-panel--apprentices {
+  --brand-colour: #287E3A;
 }
 
 @media (min-width: 40.0625em) {
