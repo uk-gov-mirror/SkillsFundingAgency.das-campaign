@@ -85,6 +85,7 @@ namespace SFA.DAS.Campaign.Infrastructure.Api.Converters
             AddHeaderImage(cmsContent, pageModel);
             AddCards(cmsContent, pageModel);
             AddSections(cmsContent, pageModel);
+            AddCarousel(cmsContent, pageModel);
             
             return pageModel;
         }
@@ -117,6 +118,21 @@ namespace SFA.DAS.Campaign.Infrastructure.Api.Converters
             model.Content.Cards3 = MapCards(mainContent.Cards3);
         }
 
+        private static void AddCarousel(PageRoot cmsContent, Page<Hub> model)
+        {
+            var carousel = cmsContent.Hub.MainContent?.Carousel;
+
+            if (carousel == null || !carousel.Any())
+            {
+                return;
+            }
+
+            model.Content.Carousel = carousel
+                .Select(MapImage)
+                .Where(image => image != null)
+                .ToList();
+        }
+
         private static void AddSections(PageRoot cmsContent, Page<Hub> model)
         {
             var sections = cmsContent.Hub.MainContent?.Sections;
@@ -138,6 +154,7 @@ namespace SFA.DAS.Campaign.Infrastructure.Api.Converters
                     Image = MapImage(section.Image),
                     StepperLinks = MapSectionLinks(section.StepperLinks, hubType),
                     StandardLinks = MapSectionLinks(section.StandardLinks, hubType),
+                    Statistics = MapStatistics(section.StatisticsSections),
                     CtaPanel = MapCtaPanel(section.CtaPanel)
                 })
                 .Where(section => section.HasContent)
@@ -164,6 +181,27 @@ namespace SFA.DAS.Campaign.Infrastructure.Api.Converters
                     LandingPage = MapLandingPage(link.LandingPage),
                     CtaPanel = MapCtaPanel(link.CtaPanel)
                 })
+                .ToList();
+        }
+
+        private static List<HubStatistic> MapStatistics(List<ResponseHubStatistic> statistics)
+        {
+            if (statistics == null || !statistics.Any())
+            {
+                return new List<HubStatistic>();
+            }
+
+            return statistics
+                .Where(statistic => statistic != null)
+                .Select(statistic => new HubStatistic
+                {
+                    Text = statistic.Text,
+                    HighlightValue = statistic.HighlightValue,
+                    QuoteName = statistic.QuoteName,
+                    QuoteRole = statistic.QuoteRole,
+                    ReferenceText = statistic.ReferenceText
+                })
+                .Where(statistic => statistic.HasContent)
                 .ToList();
         }
 

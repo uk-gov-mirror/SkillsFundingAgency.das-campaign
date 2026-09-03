@@ -23,8 +23,29 @@ namespace SFA.DAS.Campaign.Infrastructure.Api.Converters
         [JsonProperty("standardLinks")]
         public List<ResponseHubSectionLink> StandardLinks { get; set; }
 
+        [JsonProperty("statisticsSections")]
+        public List<ResponseHubStatistic> StatisticsSections { get; set; }
+
         [JsonProperty("ctaPanel")]
         public ResponseCtaPanel CtaPanel { get; set; }
+    }
+
+    public class ResponseHubStatistic
+    {
+        [JsonProperty("text")]
+        public string Text { get; set; }
+
+        [JsonProperty("highlightValue")]
+        public string HighlightValue { get; set; }
+
+        [JsonProperty("quoteName")]
+        public string QuoteName { get; set; }
+
+        [JsonProperty("quoteRole")]
+        public string QuoteRole { get; set; }
+
+        [JsonProperty("referenceText")]
+        public string ReferenceText { get; set; }
     }
 
     public class ResponseHubSectionLink

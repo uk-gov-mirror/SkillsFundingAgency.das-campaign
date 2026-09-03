@@ -41,7 +41,14 @@
     <div class="fiu-width-container">
         @if (Model.Content.Sections.Any())
         {
-            @* The content API now drives the whole hub body through mainContent.sections. *@
+            <h2 class="govuk-heading-m">On this page</h2>
+            <ul class="govuk-list govuk-list--spaced app-anchor-links app-anchor-links__list app-anchor-links__list--grid app-anchor-links__list--dash govuk-!-margin-bottom-9">
+            @foreach (var hubSection in Model.Content.Sections) {
+                <li role="listitem" class="app-anchor-links__list-item">
+                    <a class="govuk-link govuk-link--no-visited-state app-anchor-links__link" href="#@hubSection.Heading.EnsureHrefUsableTitle()">@hubSection.Heading</a>
+                </li>
+            }
+            </ul>
             foreach (var hubSection in Model.Content.Sections)
             {
                 <partial name="Hubs/_HubSection" model="hubSection" />

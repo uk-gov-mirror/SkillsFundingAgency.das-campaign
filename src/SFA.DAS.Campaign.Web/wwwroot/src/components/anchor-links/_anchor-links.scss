@@ -10,6 +10,13 @@
   padding: 0;
 }
 
+.app-anchor-links__list--grid {
+  @include govuk-media-query(tablet) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .app-anchor-links__list-item {
   margin-bottom: govuk-spacing(2);
 

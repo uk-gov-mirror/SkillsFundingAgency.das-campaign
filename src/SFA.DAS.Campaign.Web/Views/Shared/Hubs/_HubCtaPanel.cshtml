@@ -4,12 +4,9 @@
     {
         return;
     }
-
-    // Set by the hub view. ViewBag.Section is not usable here: layouts run after the body.
-    var brand = ViewData["HubBrand"] as string ?? "apprentices";
-    var hasUrl = !string.IsNullOrWhiteSpace(Model.Url);
+    var hasButton = !string.IsNullOrWhiteSpace(Model.ButtonText);
 }
-<a class="fiu-panel fiu-panel--@brand fiu-panel--left-align fiu-cta-panel" href="@Model.Url">
+<a class="fiu-panel fiu-panel--left-align fiu-cta-panel" href="@Model.Url">
     @if (!string.IsNullOrWhiteSpace(Model.Icon))
     {
         <partial name="Hubs/_HubCtaIcon" model="@Model.Icon" />
@@ -17,18 +14,17 @@
     <div class="fiu-cta-panel__body">
         @if (!string.IsNullOrWhiteSpace(Model.Heading))
         {
-            <h2 class="govuk-heading-m govuk-!-margin-0">@Model.Heading</h2>
-        }
+            <h2 class="govuk-heading-m govuk-!-margin--top-0 govuk-!-margin-bottom-2">@Model.Heading</h2>
+        } 
         @if (!string.IsNullOrWhiteSpace(Model.Description))
         {
             <p>@Model.Description</p>
         }
     </div>
-    @if (hasUrl)
+    @if (hasButton)
     {
         <div class="fiu-cta-panel__action">
-            <span href="@Model.Url"
-                  class="fiu-button fiu-panel__button">
+            <span class="fiu-cta-panel__button">
                 @(string.IsNullOrWhiteSpace(Model.ButtonText) ? Model.Heading : Model.ButtonText)
             </span>
         </div>

@@ -17007,6 +17007,7 @@
 
 .fiu-quote__caption-description {
   font-weight: 300;
+  font-size: 19px;
   display: block;
   color: inherit;
 }
@@ -17247,6 +17248,13 @@ b {
   list-style: none;
   margin: 0 0 2rem;
   padding: 0;
+}
+
+@media (min-width: 40.0625em) {
+  .app-anchor-links__list--grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .app-anchor-links__list-item {
@@ -18667,14 +18675,24 @@ a.fiu-card-homepage .fiu-card__content {
 .fiu-hub-section {
   background: #fff;
   padding: 20px;
-  margin-bottom: 3rem;
+  margin-bottom: 20px;
   border: 1px solid var(--border-colour);
   border-radius: 10px;
 }
 @media (min-width: 40.0625em) {
   .fiu-hub-section {
-    margin-bottom: 3.75rem;
     padding: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+.fiu-hub-section__btt {
+  margin-bottom: 40px;
+  display: inline-block;
+}
+@media (min-width: 40.0625em) {
+  .fiu-hub-section__btt {
+    margin-bottom: 60px;
   }
 }
 
@@ -18688,18 +18706,13 @@ a.fiu-card-homepage .fiu-card__content {
 }
 
 .fiu-hub-section__introduction {
+  color: var(--govuk-secondary-text-colour);
   font-family: nobel, sans-serif;
   font-weight: 300;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin-bottom: 0;
-}
-@media (min-width: 40.0625em) {
-  .fiu-hub-section__introduction {
-    font-size: 21px;
-    line-height: 1.35;
-  }
 }
 
 .fiu-hub-section__image {
@@ -18710,11 +18723,6 @@ a.fiu-card-homepage .fiu-card__content {
   object-fit: cover;
   object-position: center;
   margin: 1.5rem auto;
-}
-@media (min-width: 40.0625em) {
-  .fiu-hub-section__image {
-    margin-top: 0;
-  }
 }
 
 .fiu-stepper {
@@ -18808,12 +18816,39 @@ a.fiu-card-homepage .fiu-card__content {
 }
 .fiu-stepper__link .fiu-stepper__heading {
   color: var(--link-colour);
+  text-decoration: underline;
+  text-decoration-thickness: max(1px, 0.0625rem);
+  text-underline-offset: 0.1578em;
+}
+.fiu-stepper__link:hover .fiu-stepper__heading, .fiu-stepper__link:focus .fiu-stepper__heading {
+  text-decoration-thickness: max(3px, 0.1875rem, 0.12em);
+}
+.fiu-stepper__link:focus {
+  outline: 3px solid transparent;
+  color: var(--govuk-focus-text-colour, #0b0c0c);
+  background-color: var(--govuk-focus-colour, #ffdd00);
+  box-shadow: 0 -2px var(--govuk-focus-colour, #ffdd00), 0 4px var(--govuk-focus-text-colour, #0b0c0c);
+  text-decoration: none;
+}
+.fiu-stepper__link:focus .fiu-stepper__heading {
+  color: var(--govuk-focus-text-colour, #0b0c0c);
+}
+
+.fiu-stepper--without-links .fiu-stepper__item:before {
+  display: none;
+}
+.fiu-stepper--without-links .fiu-stepper__item .fiu-stepper__space {
+  display: none;
 }
 
 .fiu-panel.fiu-cta-panel {
   align-items: center;
   text-align: center;
   padding: 1rem;
+  border: none;
+  background: var(--border-colour);
+  color: var(--brand-colour-dark);
+  margin: 0;
 }
 @media (min-width: 40.0625em) {
   .fiu-panel.fiu-cta-panel {
@@ -18825,40 +18860,47 @@ a.fiu-card-homepage .fiu-card__content {
   }
 }
 
+.fiu-icon {
+  fill: currentColor;
+}
+
 .fiu-cta-panel__icon {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  background: #287E3A;
-  color: #ffffff;
-}
-
-.fiu-panel--employers .fiu-cta-panel__icon {
-  background: #4d43a3;
+  width: 6rem;
+  height: 6rem;
 }
 
 .fiu-cta-panel__body {
   flex: 1 1 auto;
 }
+.fiu-cta-panel__body h2 {
+  color: inherit !important;
+}
 
 .fiu-cta-panel__action {
   flex: 0 0 auto;
-}
-.fiu-cta-panel__action .govuk-button {
-  margin-bottom: 0;
-}
-.fiu-cta-panel__action .govuk-hint {
-  display: block;
-  margin-top: 0.5rem;
 }
 @media (min-width: 40.0625em) {
   .fiu-cta-panel__action {
     align-self: self-end;
   }
+}
+
+.fiu-cta-panel__button {
+  background: var(--brand-colour);
+  color: #fff;
+  font-weight: 600;
+  font-size: 19px;
+  padding: 7px 20px 10px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+a.fiu-panel:hover .fiu-cta-panel__button {
+  outline: 3px solid currentColor;
 }
 
 .fiu-hub-section__header {
@@ -18880,7 +18922,7 @@ a.fiu-card-homepage .fiu-card__content {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 1.5rem;
-  margin: 0 0 1.5rem;
+  margin: 0;
   padding: 0;
 }
 @media (min-width: 40.0625em) {
@@ -18898,10 +18940,10 @@ a.fiu-card-homepage .fiu-card__content {
   width: 100%;
   margin: 0;
   background: #f3f3f3;
-  border-left: 10px solid var(--link-colour);
-  border-top: 1px solid var(--border-colour);
-  border-right: 1px solid var(--border-colour);
-  border-bottom: 1px solid var(--border-colour);
+  border-left: 10px solid var(--brand-colour-dark);
+  border-top: 1px solid var(--govuk-border-colour);
+  border-right: 1px solid var(--govuk-border-colour);
+  border-bottom: 1px solid var(--govuk-border-colour);
   padding: 1.25rem 1.5rem;
 }
 
@@ -18911,7 +18953,7 @@ a.fiu-card-homepage .fiu-card__content {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--link-colour);
+  color: var(--brand-colour-dark);
   font-weight: 700;
   font-size: 2rem;
   line-height: 1.1;
@@ -18939,8 +18981,9 @@ a.fiu-card-homepage .fiu-card__content {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
-  font-weight: 500;
+  color: var(--brand-colour-dark);
+  font-size: 24px;
+  font-weight: 700;
   margin: 0.75rem 0 0;
 }
 
@@ -20923,18 +20966,30 @@ a.fiu-tag:focus {
 }
 
 :root {
+  --brand-colour: #4282ba;
+  --brand-colour-dark: #4282ba;
+  --brand-colour-mid: #4282ba;
+  --brand-colour-light: #4282ba;
   --border-colour: #cecece;
-  --link-colour: #287E3A;
-  --link-hover-colour: rgb(27.7108433735, 87.2891566265, 40.1807228916);
+  --link-colour: #4282ba;
+  --link-hover-colour: rgb(52.6428571429, 103.6904761905, 148.3571428571);
 }
 
 .fiu-template--apprentices {
+  --brand-colour: #287E3A;
+  --brand-colour-dark: #005A30;
+  --brand-colour-mid: #AFC6B4;
+  --brand-colour-light: #CCE2D8;
   --border-colour: #CCE2D8;
   --link-colour: #287E3A;
   --link-hover-colour: rgb(27.7108433735, 87.2891566265, 40.1807228916);
 }
 
 .fiu-template--employers {
+  --brand-colour: #4d43a3;
+  --brand-colour-dark: #3D2375;
+  --brand-colour-mid: #B1AFC6;
+  --brand-colour-light: #DBD5E9;
   --border-colour: #DBD5E9;
   --link-colour: #4d43a3;
   --link-hover-colour: rgb(59.9260869565, 52.1434782609, 126.8565217391);

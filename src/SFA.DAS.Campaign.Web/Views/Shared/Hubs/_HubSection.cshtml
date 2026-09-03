@@ -1,4 +1,5 @@
 @using SFA.DAS.Campaign.Web.Helpers
+@using SFA.DAS.Campaign.Web.Renderers
 @model SFA.DAS.Campaign.Domain.Content.HubSection
 @{
     if (Model == null || !Model.HasContent)
@@ -6,12 +7,29 @@
         return;
     }
     
-    var brand = ViewData["HubBrand"] as string ?? "apprentices";
     var sectionModifier = string.IsNullOrWhiteSpace(Model.SectionType)
         ? string.Empty
         : $" fiu-hub-section--{Model.SectionType.Trim().ToLowerInvariant()}";
 }
-<section class="fiu-hub-section@(sectionModifier)">
+<section class="fiu-hub-section@(sectionModifier)" id="@Model.Heading.EnsureHrefUsableTitle()">
+@if (Model.IsStatsSection)
+{
+    <div class="fiu-hub-section__header">
+        @if (!string.IsNullOrWhiteSpace(Model.Heading))
+        {
+            <h2 class="govuk-heading-l fiu-hub-section__title">@Model.Heading</h2>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.Introduction))
+        {
+            <p class="fiu-hub-section__introduction">@Model.Introduction</p>
+        }
+    </div>
+
+    <partial name="Hubs/_HubStatistics" model="Model.Statistics" />
+    <partial name="Hubs/_HubCtaPanel" model="Model.CtaPanel" />
+}
+else
+{
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third">
             @if (!string.IsNullOrWhiteSpace(Model.Heading))
@@ -58,12 +76,11 @@
 
             @if (Model.StandardLinks.Any())
             {
-                <ul class="fiu-stepper">
-                    @foreach (var link in Model.StandardLinks)
+                <ul class="fiu-stepper @(Model.StepperLinks.Any() ? "fiu-stepper--with-links" : "fiu-stepper--without-links")">                    @foreach (var link in Model.StandardLinks)
                     {
                         <li class="fiu-stepper__item fiu-stepper__item--no-number">
                             <span class="fiu-stepper__space" aria-hidden="true"></span>
-                            <a class="fiu-link fiu-stepper__link" href="@link.Url.ToLower()">
+                            <a class="fiu-stepper__link" href="@link.Url.ToLower()">
                                 <div class="fiu-stepper__body">
                                     <h3 class="fiu-stepper__heading">
                                         @link.Title
@@ -78,7 +95,10 @@
                     }
                 </ul>
             }
-            <partial name="Hubs/_HubCtaPanel" model="Model.CtaPanel" />
+            <partial name="Hubs/_HubStatistics" model="Model.Statistics" />
         </div>
     </div>
+    <partial name="Hubs/_HubCtaPanel" model="Model.CtaPanel" />
+}
 </section>
+<a href="#main" class="fiu-back-link--top fiu-hub-section__btt">Back to top</a>

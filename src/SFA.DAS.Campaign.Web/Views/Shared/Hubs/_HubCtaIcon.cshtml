@@ -1,34 +1,9 @@
 @model string
-@*
-    Maps the CMS ctaPanel.icon value onto an inline SVG. Unknown icon names render nothing
-    rather than breaking the panel, so new icons can be added in Contentful ahead of the markup.
-*@
 @{
     var icon = (Model ?? string.Empty).Trim().ToLowerInvariant();
 }
 <span class="fiu-cta-panel__icon" aria-hidden="true">
-    @switch (icon)
-    {
-        case "search":
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" focusable="false" width="32" height="32">
-                <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10.5 3a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15zm5.4 12.9L21 21" />
-            </svg>
-            break;
-        case "phone":
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" focusable="false" width="32" height="32">
-                <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M7.5 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3.5l-4.5-2-2.2 2.6a13.6 13.6 0 0 1-5.4-5.4L11.5 9z" />
-            </svg>
-            break;
-        case "email":
-        case "envelope":
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" focusable="false" width="32" height="32">
-                <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 5h18v14H3zM3 5l9 7 9-7" />
-            </svg>
-            break;
-        case "download":
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" focusable="false" width="32" height="32">
-                <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0 5-5m-5 5-5-5M4 20h16" />
-            </svg>
-            break;
-    }
+    <svg class="fiu-icon" aria-hidden="true" focusable="false">                                                                                                                                                                                                 
+        <use href="/images/sprite.svg#@icon"></use>                                                                                                                                                                                                       
+    </svg>     
 </span>
